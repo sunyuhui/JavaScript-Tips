@@ -1,2 +1,60 @@
 # JavaScript-Tips
-a JavaScript tip every day
+
+偶然看到[JavaScript Tips](https://github.com/loverajoel/jstips)。这个项目是**每天分享一个JavaScript Tip**，受到这个项目的启发，我也打算每天更新一个小Tip，我会参考原文，如果觉得写的很不错，我也会仅仅充当翻译工，但是每一个Tip都会加入我自己的思考，思考如果是我来写这个Tip的话，我会怎么写。
+
+能力有限，经验不足，还望轻拍。
+
+####2016-01-08：null和undefined的区别
+
+* `undefined`表示变量没有被声明或者声明了但是没有被赋值。
+* `null`表示这个变量不是一个值。
+* JavaScript里没有被赋值的变量默认为`undefined`。
+* JavaScript里不会把一个值设置为`null`，只有程序员自己才能把一个值设置为`null`。
+* 在JSON里`undefined`不可用，而`null`是可用的。
+* `type of undefined`的值为`undefined`。
+* `type of null`的值为`object`。
+* `null`和`undefined`的布尔值都为false。
+* `null == undefined`的值为**true**。
+* `null === undefined`的值为**false**。
+
+####2016-01-07：往数组中插入一个元素
+
+一般而言，对数组元素的操作我们会用到这些函数：`push`，`pop`，`unshift`，`shift`，`splice`。
+
+<pre>
+	var a = [1, 2, 3];
+	a.push(4);
+	console.log(a);     //[1,2,3,4]
+	a.pop();					
+	console.log(a);		//[1,2,3]
+	a.unshift(5);
+	console.log(a);		//[5,1,2,3]
+	a.shift();
+	console.log(a);		//[1,2,3]
+	a.splice(0,2,6);
+	console.log(a)		//[6,3]
+</pre>
+
+我在这里想介绍的是利用`length`属性来进行数组元素的增减。
+
+<pre>
+	var a = [1, 2, 3];
+	a.length = 1;
+	console.log(a);		//[1]
+	a.length = 5;
+	console.log(a);		//[1,undefined,undefined, undefined, undefined]
+	a = [1,2,3];
+	a.splice(a.length/2,0,4,5,6);		//在数组的中间插入元素
+	console.log(a);		//[1,4,5,6,2,3]
+</pre>
+
+值得注意的是以上所有方法都改变了原数组。我们再来一个：
+
+<pre>
+	var a = [1,2,3];
+	var b = [4,5].concat(a);
+	console.log(a);		//[1,2,3]
+	console.log(b);		//[4,5,1,2,3]
+</pre>
+
+使用`concat`来增加数组元素就会返回一个新数组，不会改变原数组，
