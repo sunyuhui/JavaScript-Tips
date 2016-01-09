@@ -2,7 +2,40 @@
 
 偶然看到[JavaScript Tips](https://github.com/loverajoel/jstips)。这个项目是**每天分享一个JavaScript Tip**，受到这个项目的启发，我也打算每天更新一个小Tip，我会参考原文，如果觉得写的很不错，我也会仅仅充当翻译工，但是每一个Tip都会加入我自己的思考，思考如果是我来写这个Tip的话，我会怎么写。
 
-能力有限，经验不足，还望轻拍。
+经验不足，能力有限，还望轻拍。
+
+####2016-01-09: 为数组或者单个元素应用相同的函数
+
+举例：
+
+	var a = "sun";
+	var b = ["sun","hui"];
+
+现在需要将`a`转换成大写，将`b`中的每个元素都转换成大写,通常的做法是：
+
+	console.log(a.toUpperCase());     			// "SUN"
+	for(var i=0;i<b.length;i++){
+		console.log(b[i].toUpperCase());      // "SUN" "HUI"
+	}
+
+这种做法相当于写了两套代码，看看下面的方式。
+
+	function toUpper(words){
+		var elements = [].concat(words);
+		for(var i=0;i<elements.length;i++){
+			console.log(elements[i].toUpperCase());
+		}
+	}
+	
+	toUpper("sun");								// "SUN"
+	toUpper(["sun","hui"]);						// "SUN" "HUI"
+	
+关键点是：`concat`的用法，`str.concat(arg)`的参数`arg`如果是一个数组会把数组里的（不是嵌套数组的）每一项都拿出来作为新数组的元素。
+	
+
+
+
+
 
 ####2016-01-08：null和undefined的区别
 
