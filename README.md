@@ -4,6 +4,35 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-10：对象数组根据某个属性排序
+
+	function compare(prop){
+		return function(obj1,obj2){
+			var prop1 = obj[prop];
+			var prop2 = obj[prop];
+			if(prop1<prop2){
+				return -1;
+			} else if(prop1>prop2){
+				return 1;
+			} else {
+				return 0;
+			}
+			
+		}
+	}
+	var arr = [
+		{"name":"bsunhui","age":"23"},
+		{"name":"csunhui","age":"22"}
+	];
+	arr.sort(compare("age"));
+	console.log(arr);					//[{"name":"csunhui","age":"22"},{"name":"bsunhui","age":"23"}]
+	arr.sort(compare("name"));
+	console.log(arr); 					//[{"name":"bsunhui","age":"23"},{"name":"csunhui","age":"22"}]
+	
+`compare`函数返回了一个**闭包**，这样就可以根据传入的属性进行排序。
+
+关键词：**闭包**、**对象数组按属性排序**
+
 ####2016-01-09: 为数组或者单个元素应用相同的函数
 
 举例：
@@ -31,6 +60,8 @@
 	toUpper(["sun","hui"]);						// "SUN" "HUI"
 	
 关键点是：`concat`的用法，`str.concat(arg)`的参数`arg`如果是一个数组会把数组里的（不是嵌套数组的）每一项都拿出来作为新数组的元素。
+
+关键词：**concat**
 	
 
 
@@ -49,6 +80,9 @@
 * `null`和`undefined`的布尔值都为false。
 * `null == undefined`的值为**true**。
 * `null === undefined`的值为**false**。
+
+关键词：**null**、**undefined**
+
 
 ####2016-01-07：往数组中插入一个元素
 
@@ -90,4 +124,6 @@
 	console.log(b);		//[4,5,1,2,3]
 </pre>
 
-使用`concat`来增加数组元素就会返回一个新数组，不会改变原数组，
+使用`concat`来增加数组元素就会返回一个新数组，不会改变原数组。
+
+关键词：**数组**、**length**
