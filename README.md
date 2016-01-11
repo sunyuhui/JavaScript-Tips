@@ -4,6 +4,34 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-11：判断对象中是否存在某个属性
+
+我们经常需要用到对象中的某个属性，为了保证程序的健壮性，在使用之前我们需要判断这个属性是否存在，可以用`if`来判断
+
+	if(obj[property] !== undefined){
+		// do something
+	}
+	
+更方便的方式是使用这两个方法：`hasOwnProperty`和`in`。
+
+	function Person (name) {
+		this.name  = name;
+	}
+	Person.prototype.age = '22';
+
+	var person = new Person("sunhui");
+	console.log(person.hasOwnProperty('name'));    // true
+	console.log("name" in person);	              // true
+	
+	console.log(person.hasOwnProperty('age'));    // false
+	console.log("age" in person);	              // true
+	
+
+`hasOwnProperty`和`in`都可以用来判断某个属性是否存在于对象中，区别就是`hasOwnProperty`不能搜索到从原型链继承的属性，而`in`可以。
+
+关键词：**hasOwnProperty**、**in**、**原型链**
+	
+	
 ####2016-01-10：对象数组根据某个属性排序
 
 	function compare(prop){
