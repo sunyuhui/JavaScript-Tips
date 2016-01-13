@@ -4,6 +4,29 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-13：检测数据类型
+
+我们通常会使用`typeof`、`instanceof`、`isArray`来检测数据的类型，这里我介绍一种万能型的：调用`Object`的`toString`方法。
+
+	function a(){console.log("yes");}
+	console.log(Object.prototype.toString.call(a)); // [object Function]
+	var b = 123;
+	console.log(Object.prototype.toString.call(b)); // [object Number]
+	var c = "sunhui";
+	console.log(Object.prototype.toString.call(c)); // [object String]
+	var d = true;
+	console.log(Object.prototype.toString.call(d)); // [object Boolean]
+	var e = [1,2,3];
+	console.log(Object.prototype.toString.call(e)); // [object Array]
+	var f;
+	console.log(Object.prototype.toString.call(f)); // [object Undefined]
+	var g = null;
+	console.log(Object.prototype.toString.call(g)); // [object Null]
+	var h = {"name":"sunyuhui"};
+	console.log(Object.prototype.toString.call(h)); // [object Object]
+
+使用`call`调用`Object`的`toString`方法，将会返回一个遵循[object NativeConstructorName]格式的字符串。其中NativeConstructorName指的就是变量的构造函数名。
+
 ####2016-01-12: 变量和函数的提前声明
 
 在JavaScript里 **变量声明** 是让系统知道这个变量存在，而**变量定义**是给这个变量赋值。**变量声明**会被提前到顶部，而 **变量定义** 不会。
