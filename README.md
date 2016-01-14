@@ -4,6 +4,19 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-14: 测试JS代码块性能
+
+说到`console`我们通常使用`console.log()`来输出变量或者打印日志，这里介绍一个不太常用的`console.time()`和`console.timeEnd()`。
+
+	console.time("time test");
+	var arr = new Array(1000);
+	for(var i=0;i<arr.length;i++){
+		arr[i] = {};
+	}
+	console.timeEnd("time test");  // time test: 4.037ms
+	
+需要注意`console.time()`和`console.timeEnd()`的参数需要保持相同。
+
 ####2016-01-13：检测数据类型
 
 我们通常会使用`typeof`、`instanceof`、`isArray`来检测数据的类型，这里我介绍一种万能型的：调用`Object`的`toString`方法。
