@@ -4,6 +4,94 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-13：检测数据类型
+
+我们通常会使用`typeof`、`instanceof`、`isArray`来检测数据的类型，这里我介绍一种万能型的：调用`Object`的`toString`方法。
+
+	function a(){console.log("yes");}
+	console.log(Object.prototype.toString.call(a)); // [object Function]
+	var b = 123;
+	console.log(Object.prototype.toString.call(b)); // [object Number]
+	var c = "sunhui";
+	console.log(Object.prototype.toString.call(c)); // [object String]
+	var d = true;
+	console.log(Object.prototype.toString.call(d)); // [object Boolean]
+	var e = [1,2,3];
+	console.log(Object.prototype.toString.call(e)); // [object Array]
+	var f;
+	console.log(Object.prototype.toString.call(f)); // [object Undefined]
+	var g = null;
+	console.log(Object.prototype.toString.call(g)); // [object Null]
+	var h = {"name":"sunyuhui"};
+	console.log(Object.prototype.toString.call(h)); // [object Object]
+
+使用`call`调用`Object`的`toString`方法，将会返回一个遵循[object NativeConstructorName]格式的字符串。其中NativeConstructorName指的就是变量的构造函数名。
+
+####2016-01-12: 变量和函数的提前声明
+
+在JavaScript里 **变量声明** 是让系统知道这个变量存在，而**变量定义**是给这个变量赋值。**变量声明**会被提前到顶部，而 **变量定义** 不会。
+
+	console.log(a);   // "ReferenceError: a is not defined"
+	
+上面的代码报变量没有定义的错误。
+
+	console.log(a);   // undefined
+	var a;
+
+上面的代码提示`undefined`，这说明我们对`a`的声明被提前了。再来看：
+
+	console.log(a);	// undefined
+	var a = 3;
+
+我们在这里对`a`同时做了**声明**和**定义**两个操作，从结果来看，只有**声明**被提前了，而**定义**却没有。
+
+接下来看函数：
+
+	getName();              	// "sunyuhui"
+	function getName(){
+		console.log("sunyuhui");
+	}
+
+结果说明我们对函数的声明被提前了。
+
+	getAge();						// "TypeError: getAge is not a function"
+	var getAge = function(){
+		console.log(22);
+	}
+
+事实上，第一种方式叫**函数声明**，这种方式能被提前到顶部，第二种方式叫**函数表达式**，不会被提前。
+
+关键词：**声明**、 **提前**
+	
+
+####2016-01-11：判断对象中是否存在某个属性
+
+我们经常需要用到对象中的某个属性，为了保证程序的健壮性，在使用之前我们需要判断这个属性是否存在，可以用`if`来判断
+
+	if(obj[property] !== undefined){
+		// do something
+	}
+	
+更方便的方式是使用这两个方法：`hasOwnProperty`和`in`。
+
+	function Person (name) {
+		this.name  = name;
+	}
+	Person.prototype.age = '22';
+
+	var person = new Person("sunhui");
+	console.log(person.hasOwnProperty('name'));    // true
+	console.log("name" in person);	              // true
+	
+	console.log(person.hasOwnProperty('age'));    // false
+	console.log("age" in person);	              // true
+	
+
+`hasOwnProperty`和`in`都可以用来判断某个属性是否存在于对象中，区别就是`hasOwnProperty`不能搜索到从原型链继承的属性，而`in`可以。
+
+关键词：**hasOwnProperty**、**in**、**原型链**
+	
+	
 ####2016-01-10：对象数组根据某个属性排序
 
 	function compare(prop){
