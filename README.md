@@ -1,8 +1,35 @@
+
 # JavaScript-Tips
 
 偶然看到[JavaScript Tips](https://github.com/loverajoel/jstips)。这个项目是**每天分享一个JavaScript Tip**，受到这个项目的启发，我也打算每天更新一个小Tip，我会参考原文，如果觉得写的很不错，我也会仅仅充当翻译工，但是每一个Tip都会加入我自己的思考，思考如果是我来写这个Tip的话，我会怎么写。
 
 经验不足，能力有限，还望轻拍。
+
+####2016-01-15： 实现JS中的继承
+
+	function Person (name,age,pro){
+		this.name = name;
+		this.age = age;
+		this.pro = pro;
+	}
+	Person.prototype.getPro = function(){
+		return this.pro;
+	}
+	function Man (name,age,pro){
+		this.name = name;
+		this.age = age;
+	}
+	Man.prototype = new Person("sunyuhui","22","fe");
+	var man1 = new Man("sunyuhui2","23");
+	console.log(man1.name);   			// sunyuhui2
+	console.log(man1.age);				// 23
+	console.log(man1.getPro());			// fe
+	
+将构造函数`Person`的实例赋予构造函数`Man`的原型,这样就实现了`Man`对`Person`的继承，从中可以看到`man1`的属性**name**和属性**age**覆盖了继承的属性，而属性**fe**被来自于继承。
+
+注意：`Man.prototype = ***`的这种形式会修改原型链，使`Man`的实例对象的`constructor`属性不为`Man`.这个点以后单独说。
+
+关键词： **继承**
 
 ####2016-01-14: 测试JS代码块性能
 
