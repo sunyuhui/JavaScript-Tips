@@ -5,6 +5,26 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-16: 注意不要破坏原型链
+
+在【2016-01-15：实现JS中的继承】中我提到`Man.prototype=`的形式会破坏构造函数的原型链。那在这种情况下我们有什么办法不破坏吗？
+
+当然有
+
+	function Person(name){
+		this.name = name;
+	}
+	Person.prototype = {
+		//constructor: Person,
+		getName: function(){
+			return this.name;
+		}
+	}
+	var man = new Person("sunyuhui");
+	console.log(man.constructor === Person);      // false
+	
+每一个构造函数的原型都有一个`construtor`属性，指向构造函数本身，上面这种设置原型的方式相当于重写了原型，却没有为原型的`constructor`属性赋值，就破坏了`Person`的原型链。将注释的部分取消注释就ok了。
+
 ####2016-01-15： 实现JS中的继承
 
 	function Person (name,age,pro){
