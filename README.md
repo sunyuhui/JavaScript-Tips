@@ -5,6 +5,33 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-17: 递归函数的优化
+
+典型的递归函数是求一个数的阶乘：
+
+	function getTotal(num){
+		if (num<2){
+			return 1;
+		} else {
+			return num * getTotal(num-1);
+		}
+	}
+	console.log(getTotal(3)); 		// 6
+	
+这里说到的优化主要指的是函数在调用自身的时候可以不用指定函数名，防止函数被重新赋值导致调用出错。
+
+	function getTotal(num){
+		if (num<2){
+			return 1;
+		} else {
+			return num * arguments.callee(num-1);
+		}
+	}
+	console.log(getTotal(3)); 		// 6
+
+其中`arguments`指向函数的参数，`arguments.callee`指向正在执行的函数，
+	
+
 ####2016-01-16: 注意不要破坏原型链
 
 在【2016-01-15：实现JS中的继承】中我提到`Man.prototype=`的形式会破坏构造函数的原型链。那在这种情况下我们有什么办法不破坏吗？
