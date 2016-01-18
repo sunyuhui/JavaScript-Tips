@@ -5,6 +5,21 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-18: new这个关键字到底做了什么
+
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	var person1 = new Person("sunyuhui", "22");
+
+我们以上面的代码为例说明`new`这个关键字做了哪些事。
+
+1. 创建一个新对象**person1**
+2. 将构造函数`Person`的作用域赋给**person1**,这样**对象person1**就可以访问构造函数`Person`里的代码。this就指向**对象person1**。
+3. 执行构造函数里的代码，**对象person**的`name`和`age`分别被赋值为**sunyuhui**、**22**。
+4. 返回新对象，这样我们就得到了**对象person**。
+
 ####2016-01-17: 递归函数的优化
 
 典型的递归函数是求一个数的阶乘：
