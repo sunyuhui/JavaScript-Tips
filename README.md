@@ -5,6 +5,38 @@
 
 经验不足，能力有限，还望轻拍。
 
+####2016-01-19: 函数嵌套时的作用域
+
+	var a = 1;
+	function get(){
+	  console.log(a);
+	}
+	get();    //1
+
+	function get2(){
+	  var a = 2;
+	  console.log(a);
+	}
+	get2();   //2
+	
+上面代码的输出结果大家肯定明白，但是下面的代码呢？
+
+	var a = 1;
+	function get(){
+	  console.log(a);
+	}
+
+	function get3(){
+	  var a = 2;
+	  get();
+	}
+	get3();	//1
+	
+输入结果为**1**的原因是由于函数嵌套时，作用域是在定义时决定的，而不是调用时决定的。`函数get`是在全局作用域下定义的，而运行是在`函数get3`的作用域下定义的，获取`变量a`的值是在全局作用域下获取的，而不是在`函数get`的作用域里获取的。
+	
+
+
+
 ####2016-01-18: new这个关键字到底做了什么
 
 	function Person(name,age){
