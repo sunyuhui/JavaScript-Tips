@@ -20,6 +20,26 @@
 
 
 
+####<a id="0121">2016-01-21：链式调用对象实例的方法</a>
+
+实现**链式调用**通常是在`jQuery`或者其他一些框架里，那我们如何在原生的`JavaScript`里实现链式调用呢？
+
+	function Person(name){
+  		this.name = name;
+  		this.setName = function(name){
+    		this.name = name;
+    		return this;
+  		}
+  		this.sayName = function(){
+    		console.log(this.name);
+    		return this;
+  		}
+	}
+	var person = new Person("sunyuhui");
+	person.sayName().setName("sunyuhui2").sayName();// "sunyuhui" "sunyuhui2"
+	
+关键词：**链式调用**、**this**
+
 ####<a id="0120">2016-01-20: 使用concat拼接字符串</a>
 
 拼接字符串通常的做法是使用加号`+`，如`c = '1' + '2';`
