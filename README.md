@@ -113,6 +113,8 @@
 3. 在`person1`的上下文环境中执行构造函数，即`Person.call(person1, "sunyuhui", "22")`
 4. 返回新对象，这样我们就得到了对象`person1`。
 
+thanks to @[Zhang Visper](https://github.com/coolzjy)
+
 关键词： **new**
 
 
