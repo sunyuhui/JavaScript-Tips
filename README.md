@@ -19,6 +19,22 @@
 * <a href="#0107">2016-01-07：往数组中插入一个元素</a>
 
 
+####<a id="0123">2016-01-23: 将String类型的数字快速转换为Number类型的数字</a>
+
+通常的做法是使用`Number()`.
+
+	var a = '1';
+	var b = Number(a);
+	console.log(b + ' ' +typeof b);  // 1 number
+
+这里介绍一种更加简单的方法。
+
+	var a = '1';
+	var b = +a;
+	console.log(b + ' '+ typeof b); // 1 number
+	
+使用运算符`+`可以快速转换为**Number**类型的数字。
+
 ####<a id="0122">2016-01-22: 清空一个数组</a>
 
 清空数组通常的做法是直接使用`arr = []`的方式。不过这里想介绍另一种方式：使用`属性length`。
@@ -133,12 +149,10 @@
 
 我们以上面的代码为例说明`new`这个关键字做了哪些事。
 
-1. 创建一个新对象`person1`
-2. 将构造函数`Person`的`prototype`对象设置为`person1`的原型，即`person1.__proto__ = Person.prototype`
-3. 在`person1`的上下文环境中执行构造函数，即`Person.call(person1, "sunyuhui", "22")`
-4. 返回新对象，这样我们就得到了对象`person1`。
-
-thanks to @[Zhang Visper](https://github.com/coolzjy)
+1. 创建一个新对象**person1**
+2. 将构造函数`Person`的作用域赋给**person1**,这样**对象person1**就可以访问构造函数`Person`里的代码。this就指向**对象person1**。
+3. 执行构造函数里的代码，**对象person**的`name`和`age`分别被赋值为**sunyuhui**、**22**。
+4. 返回新对象，这样我们就得到了**对象person**。
 
 关键词： **new**
 
