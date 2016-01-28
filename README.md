@@ -19,6 +19,18 @@
 * <a href="#0107">2016-01-07：往数组中插入一个元素</a>
 
 
+####<a id="0126">2016-01-26:数组去重</a>
+
+	var arr = ["abc", "undefined","abc","xyz"];
+	var arr2 = arr.filter(function(item, index){
+		return arr.indexOf(item) === index;
+	});
+	console.log(arr2);	// ["abc", "undefined", "abc", "xyz"]
+	
+上面这种去重方式使用到了`indexOf`这个函数，返回第一次查找到该元素的索引，用来与该元素在数组中的位置进行比较
+
+关键词：**数组去重**、**indexOf**
+
 ####<a id="0125">2016-01-25: 立即执行函数</a>
 
 	(function(name){
