@@ -1,5 +1,7 @@
 
-# JavaScript-Tips
+# JavaScript-Tips（停止更新）
+
+停止更新，一个人做很吃力呀，待我多多学习回来更新
 
 偶然看到[JavaScript Tips](https://github.com/loverajoel/jstips)。这个项目是**每天分享一个JavaScript Tip**，受到这个项目的启发，我也打算每天更新一个小Tip，我会参考原文，如果觉得写的很不错，我也会仅仅充当翻译工，但是每一个Tip都会加入我自己的思考，思考如果是我来写这个Tip的话，我会怎么写。
 
