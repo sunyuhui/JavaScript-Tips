@@ -382,8 +382,8 @@
 
 	function compare(prop){
 		return function(obj1,obj2){
-			var prop1 = obj[prop];
-			var prop2 = obj[prop];
+			var prop1 = obj1[prop];
+			var prop2 = obj2[prop];
 			if(prop1<prop2){
 				return -1;
 			} else if(prop1>prop2){
@@ -403,9 +403,9 @@
 	arr.sort(compare("name"));
 	console.log(arr); 					//[{"name":"bsunhui","age":"23"},{"name":"csunhui","age":"22"}]
 	
-`compare`函数返回了一个**闭包**，这样就可以根据传入的属性进行排序。
+`compare`函数返回了一个**闭包**，这样就可以根据传入的属性进行排序。当比较字符串时，最好用 [`localeCompare()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare)方法来比较字符串（字符会按字母表的前后位置关系比较），否则比较的字符的是ascii码。注意数字字符串会被隐式转换为数值类型。
 
-关键词：**闭包**、**对象数组按属性排序**
+关键词：**闭包**、**对象数组按属性排序**、**字符串比较**
 
 ####<a id="0109">2016-01-09: 为数组或者单个元素应用相同的函数</a>
 
