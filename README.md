@@ -27,7 +27,7 @@
 	var arr2 = arr.filter(function(item, index){
 		return arr.indexOf(item) === index;
 	});
-	console.log(arr2);	// ["abc", "undefined", "abc", "xyz"]
+	console.log(arr2);	// ["abc", "undefined", "xyz"]
 	
 上面这种去重方式使用到了`indexOf`这个函数，返回第一次查找到该元素的索引，用来与该元素在数组中的位置进行比较
 
